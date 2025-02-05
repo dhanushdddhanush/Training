@@ -1,0 +1,61 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.inp {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: aliceblue;
+    color: black;
+    display: inline;
+}
+
+.myform {
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.356);
+    margin-top: 100px 100px 100px 100px;
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210907/pngtree-cartoon-school-season-stationery-student-blue-image_811925.jpg");
+    background-size: contain;
+    background-blend-mode: color-burn;
+
+}
+
+label {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.headfoot {
+    padding: 30px;
+    background-color: black;
+    color: aliceblue;
+    text-align: center;
+
+    font-size: larger;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: 0px 0px 0px 0px;
+}
+
+.but {
+    padding: 10px;
+    background-color: black;
+    color: aliceblue;
+    border-radius: 4px;
+}
+
+.formdiv {
+   
+    padding: 10px 10px 10px 550px;
+    background-color: rgba(165, 42, 42, 0.064);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.days{
+    padding: 100px;
+    background-color: bisque;
+   
+   text-align: center;
+}
