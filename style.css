@@ -58,8 +58,8 @@ label {
     text-align: center;
 }
 .inbo{
-   background-image: url("https://wallpapers.com/images/hd/spectacular-4k-ocean-view-v2cs024q0itgo07y.jpg");
-   
+   background-image: url("/images/bg.jpg");
+
    background-repeat: no-repeat;
    background-size: cover;
 }
