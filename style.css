@@ -54,8 +54,24 @@ label {
 
 }
 .days{
-    padding: 100px;
-    background-color: bisque;
    
-   text-align: center;
+    text-align: center;
+}
+.inbo{
+   background-image: url("https://wallpapers.com/images/hd/spectacular-4k-ocean-view-v2cs024q0itgo07y.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+table, tr,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+  
+}
+.tab{
+  display: flex;
+    justify-content: center;
+    border: none;
+    margin-top: 10px;
+    height: fit-content;
 }
