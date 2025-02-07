@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url("https://t3.ftcdn.net/jpg/02/05/87/60/360_F_205876015_hYYs7ugqoU8QAobSS3TbnGQ92qyS5gEc.jpg") ;
+  /* background-image: url("https://t3.ftcdn.net/jpg/02/87/76/00/360_F_287760066_COBeYwfeWuKtWnM9lm7cDCQESYQIoaNr.jpg");   */
+background-repeat: no-repeat;
+background-size: cover;
+}
+ul{
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.443);
+    list-style-type: none;
+    width: 100%;
+    padding: 10px;
+    border: none;
+}
+li{
+float: left;
+}
+#le{
+    float: right;
+    padding: 20px;
+    font-size: larger;
+}
+#le1{
+    padding: 10px;
+    font-size: xx-large;
+}
+a{
+    text-decoration: none;
+    color: aliceblue;
+}
+.banner{
+    margin-top:100px;
+    width: 70%;
+      height: 120px;
+      align-items: center;
+      padding:10px;
+      margin-left: 14%;
+    
+      }
+.box{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  
+} 
+.box > div {
+    background-color:rgba(255, 255, 255, 0.801);
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    text-align: center;
+    
+    font-size: 30px;
+border-radius: 20px;  
+box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.6);
+}
+  
+ .items{
+    padding: 8px;
+
+    height: auto;
+    width: 90%;
+    border-radius: 30px;
+    box-shadow: 10px  rgba(0, 0, 0, 0.6);
+ }
+ 
+ #ordernow{
+    float: right;
+    text-decoration: none;
+padding: 5px;
+background-color: rgba(0, 0, 0, 0.79);
+color:rgb(255, 255, 255);
+border-radius: 10px;
+font-size: 24px;
+ }
+ h6{
+    float: left;
+    text-align: center;
+ }
+ .box11{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+ }
+ #details{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 39px;
+    background-color:  rgba(0, 0, 0, 0.443);
+    bottom: 0;
+   
+ }
+ input{
+    border: none;
+    padding: 12px;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.6);
+}
+
+
+  
