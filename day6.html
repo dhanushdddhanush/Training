@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11/02/2025</title>
+    <style>
+        .box {
+
+            background-color: rgba(153, 50, 204, 0.735);
+            padding: 30px;
+            margin: 50px;
+            border: 15px solid rgb(0, 0, 0);
+            border-radius: 20px;
+            text-indent: 50px;
+            text-align: justify;
+            width: 500px;
+
+        }
+
+
+        header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background-color: black;
+            color: aliceblue;
+            font-size: x-large;
+            text-align: center;
+            text-transform: capitalize;
+            z-index: 1000;
+        }
+
+
+        * {
+            margin: 0px;
+            padding: 0px;
+
+
+        }
+
+        .break {
+
+            border: 10px solid rgb(0, 0, 0);
+        }
+
+        .parent {
+            position: relative;
+            padding: 30px;
+            background-color: chartreuse;
+
+            height: 500px;
+            width: 500px;
+            margin: 50px;
+            z-index: -1;
+        }
+
+        .child {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            padding: 30px;
+            background-color: bisque;
+            
+        }
+
+        .one {
+            bottom: 0;
+            right: 0;
+        }
+
+        .two {
+            bottom: 0;
+            left: 0;
+        }
+
+        .three {
+            top: 0;
+            left: 0;
+        }
+
+        .four {
+            top: 0;
+            right: 0;
+        }
+
+
+
+        h1 {
+            font-family: cursive;
+            text-transform: capitalize;
+        }
+
+        img {
+            height: 300px;
+            width: 500px;
+            border-radius: 30px;
+
+        }
+
+        .hero {
+            position: relative;
+            margin: 50px;
+        }
+
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 40%;
+            font-size: xx-large;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <header>task management dashboard</header>
+    <div class="container">
+        <h1>box model illustration:</h1>
+        <div class="box">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, error. Molestiae alias iusto voluptatum
+            debitis.
+            Recusandae id libero dolores sed hic praesentium nulla delectus aliquam commodi! Odio recusandae veniam
+            minus
+            pariatur, itaque nobis? Reiciendis asperiores voluptates soluta! Ullam voluptatum est libero dignissimos
+            velit
+            impedit quibusdam, minus unde mollitia rerum facere nostrum, veritatis voluptas ea laboriosam natus iste hic
+            vel
+            suscipit debitis vitae. Voluptas ad earum tempore, quia ipsum, quas consequuntur architecto fugiat eaque,
+            sint
+            necessitatibus pariatur quidem aperiam obcaecati unde eius consequatur quae? Voluptatibus magni quis,
+            nostrum
+            ipsum nulla id, sapiente optio minima corporis dolor dolore impedit, vitae harum cum?
+        </div>
+
+
+        <h1>Experimenting with positions:</h1>
+        <div class="parent">
+            <div class="child one"></div>
+            <div class="child two"></div>
+            <div class="child three"></div>
+            <div class="child four"></div>
+
+        </div>
+
+        <h1>Using Z-Index Image</h1>
+
+        <div class="hero">
+            <img src="./images/bg.jpg" alt="">
+            <div class="text">Background</div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
