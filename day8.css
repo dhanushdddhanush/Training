@@ -50,7 +50,7 @@ img {
 .b1,.b11{
     height: 150px;
     width: 150px;
-    background-color: aliceblue;
+    background-color: rgb(0, 0, 0);
    
 }
 .b1:hover{
@@ -64,6 +64,6 @@ img {
 .box1{
     display: grid;
     justify-content: space-evenly;
-    height: 500px;
+    
     grid-template-columns: auto auto auto auto auto auto auto auto auto;
 }
