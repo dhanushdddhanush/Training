@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17-02-25</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            background-color: black;
+            color: aliceblue;
+            font-size: xx-large;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            margin: 10px;
+            background-color: aliceblue;
+            gap: 10px;
+
+        }
+
+        input[type=text],input[type=submit]{
+            padding: 10px;
+            background-color: azure;
+            color: black;
+            border-radius: 6px;
+        }
+
+        p {
+            border: 2px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Greeting</header>
+    <div class="box">
+        <input type="text" placeholder="Enter anything" id="inp">
+        <input type="submit" value="submit" id="submit" onclick="gettext()">
+        <p id="para" hidden></p>
+    </div>
+    <header>Type Checker(typeOf)</header>
+    <div class="box">
+        <input type="text" placeholder="Enter anything" id="inp1">
+        <input type="submit" value="submit" id="submit1" onclick="knowtype()">
+        <p id="para1" hidden></p>
+    </div>
+    <header>Strings</header>
+    <div class="box">
+        <input type="text" placeholder="Enter anything" id="inp2">
+        <input type="submit" value="submit" id="submit2" onclick="stringopp()">
+        <p id="para2" hidden></p>
+    </div>
+    <header>Arrays</header>
+    <div class="box">
+        <input type="text" placeholder="Enter anything" id="inp3">
+        <input type="submit" value="submit" id="submit3" onclick="arrayopp()">
+        <p id="para3" hidden></p>
+    </div>
+    <header>Area Of Rectangle</header>
+    <div class="box">
+        <input type="text" placeholder="Enter length" id="inp4">
+        <input type="text" placeholder="Enter breadth" id="inp5">
+        <input type="submit" value="submit" id="submit4" onclick="area()">
+        <p id="para4" hidden></p>
+    </div>
+    <header>Operators</header>
+    <div class="box">
+        <input type="text" placeholder="Enter number1" id="inp6">
+        <input type="text" placeholder="Enter number2" id="inp7">
+        <input type="submit" value="submit" id="submit5" onclick="operations()">
+        <p id="para5" hidden></p>
+    </div>
+
+
+    <script>
+        function gettext() {
+            let text = document.getElementById("inp").value;
+            console.log(text);
+            document.getElementById("para").innerHTML = "welcome and greetings  :" + text;
+            para.hidden = false;
+            window.alert("Hello " + text + " close this to check your greeting");
+        }
+        function knowtype() {
+            let text1 = document.getElementById("inp1").value;
+            console.log(text1);
+            let checktype;
+            if (!isNaN(text1)) {
+                checktype = "number";
+            }
+            else if (text1.toLowerCase() == "true" || text1.toLowerCase() == "false") {
+                checktype = "Boolean";
+            }
+            else {
+                checktype = "string";
+            }
+            document.getElementById("para1").innerHTML = "typeOf entered value " + text1 + " is: " + checktype;
+            para1.hidden = false;
+        }
+        function stringopp() {
+            let text2 = document.getElementById("inp2").value;
+            let lower = text2.toLowerCase();
+            let upper = text2.toUpperCase();
+            let len = text2.length;
+            let firstChar = text2.charAt(0);
+            let lastChar = text2.charAt(text2.length - 1);
+            let sliced = text2.slice(2, -2);
+            let splitting = text2.split('');
+            let reversed = text2.split('').reverse().join('');
+            let trimmed = text2.trim();
+            let include = text2.includes("a") ? "Yes" : "No";
+            let ascii = text2.charCodeAt(0);
+            let asciilast = text2.charCodeAt(text2.length - 1);
+
+            document.getElementById("para2");
+            para2.innerHTML = "Lower case: " + lower + "<br>" +
+                "Upper case: " + upper + "<br>" +
+                "Length: " + len + "<br>" +
+                "First Character: " + firstChar + "<br>" +
+                "Last Character: " + lastChar + "<br>" +
+                "Sliced: " + sliced + "<br>" +
+                "Splitted: " + splitting + "<br>" +
+                "Reversed: " + reversed + "<br>" +
+                "Trimmed: " + trimmed + "<br>" +
+                "Contains 'a'?: " + include + "<br>" +
+                "ASCII of First Char: " + ascii + "<br>" +
+                "ASCII of Last Char: " + asciilast;;
+
+            para2.hidden = false;
+
+        }
+        function arrayopp() {
+            let text3 = document.getElementById("inp3").value;
+            document.getElementById("para3");
+            let arr = text3.includes(",") ? text3.split(",") : text3.split(" ");
+            arr = arr.map(item => item.trim());
+            let sorted = [...arr].sort();
+            let reversed = arr.reverse();
+            let length = arr.length;
+            let firstElement = arr[0];
+            let lastElement = arr[arr.length - 1];
+
+            para3.innerHTML =
+                "Sorted: " + sorted + "<br>" +
+                "Reversed: " + reversed + "<br>" +
+                "Array Length: " + length + "<br>" +
+                "First Element: " + firstElement + "<br>" +
+                "Last Element: " + lastElement;
+            para3.hidden = false;
+
+        }
+        function area() {
+            let area;
+            let length = document.getElementById("inp4").value;
+            let breadth = document.getElementById("inp5").value;
+            area = length * breadth;
+            document.getElementById("para4").innerHTML = "Area of rectangle is: " + area;
+            para4.hidden = false;
+
+        }
+        function operations() {
+            let num1 = document.getElementById("inp6").value;
+            let num2 = document.getElementById("inp7").value;
+            num1 = +num1;
+            num2 = +num2;
+            document.getElementById("para5");
+            para5.innerHTML = "sum is:" + (num1 + num2) + "<br>" +
+                "subtraction is:" + (num1 - num2) + "<br>" +
+                "Divison is:" + (num1 / num2);
+
+
+            ;
+            para5.hidden = false;
+
+        }
+    </script>
+</body>
+
+</html>
