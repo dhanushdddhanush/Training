@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17-02-25</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            background-color: black;
+            color: aliceblue;
+            font-size: xx-large;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            margin: 10px;
+            background-color: aliceblue;
+            gap: 10px;
+
+        }
+
+        input[type=text],
+        input[type=submit], input[type=date]{
+            padding: 10px;
+            background-color: azure;
+            color: black;
+            border-radius: 6px;
+        }
+
+        p {
+            border: 2px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Even or Odd</header>
+    <div class="box">
+        <input type="text" placeholder="Enter number to check even or odd" id="inp">
+        <input type="submit" value="submit" id="submit" onclick="checkevenorodd()">
+        <p id="para" hidden></p>
+    </div>
+    <header>Sum of first n natural number</header>
+    <div class="box">
+        <input type="text" placeholder="Enter number" id="inp1">
+        <input type="submit" value="submit" id="submit1" onclick="sumofn()">
+        <p id="para1" hidden></p>
+    </div>
+    <header>Multiplication</header>
+    <div class="box">
+        <input type="text" placeholder="Enter number" id="inp2">
+        <input type="submit" value="submit" id="submit2" onclick="table()">
+        <p id="para2" hidden></p>
+    </div>
+    <header>Day</header>
+    <div class="box">
+        <input type="date" placeholder="Enter a day" id="inp3">
+        <input type="submit" value="submit" id="submit3" onclick="day()">
+        <p id="para3" hidden></p>
+    </div>
+    <header>Reverse</header>
+    <div class="box">
+        <input type="text" placeholder="Enter a string" id="inp4">
+        <input type="submit" value="submit" id="submit3" onclick="rev()">
+        <p id="para4" hidden></p>
+    </div>
+
+    <script>
+        function checkevenorodd() {
+            let check;
+            let num = document.getElementById("inp").value;
+            num = +num;
+            check = (num % 2 == 0) ? "Even" : "Odd";
+            document.getElementById("para").innerHTML = "Given number is : " + check;
+
+            para.hidden = false;
+
+        }
+        function sumofn() {
+            let sums = 0;
+            let num = document.getElementById("inp1").value;
+            num = +num;
+            for (i = 0; i <= num; i++) {
+                sums = sums + i;
+            }
+            document.getElementById("para1").innerHTML = "Given number is : " + sums;
+            console.log(sums)
+
+            para1.hidden = false;
+
+        }
+        function table() {
+            let result = " ";
+            let num = document.getElementById("inp2").value;
+            num = +num;
+            for (i = 1; i <= 10; i++) {
+                console.log(num + "*" + i + "=" + (num * i));
+                result += num + " * " + i + " = " + (num * i) + "<br>";
+            }
+            para2.innerHTML = result;
+
+            para2.hidden = false;
+
+        }
+        function day() {
+            let dateValue = document.getElementById("inp3").value;
+            let day;
+            let dateObj = new Date(dateValue);
+            console.log(dateObj)
+            let dayNumber = dateObj.getDay();
+            console.log(dayNumber)
+            switch (dayNumber) {
+                case 0: day = "Sunday"; break;
+                case 1: day = "Monday"; break;
+                case 2: day = "Tuesday"; break;
+                case 3: day = "Wednesday"; break;
+                case 4: day = "Thursday"; break;
+                case 5: day = "Friday"; break;
+                case 6: day = "Saturday"; break;
+                default: day = "Invalid Date";
+            }
+
+            document.getElementById("para3").innerHTML = "The selected date is: " + day;
+            document.getElementById("para3").hidden = false;
+        }
+        function rev() {
+            let word;
+            let text5 = document.getElementById("inp4").value;
+            word = text5.split(' ').reverse().join(' ');
+            console.log(word);
+            document.getElementById("para4").innerHTML = "The reversed string is: " + word;
+            document.getElementById("para4").hidden = false;
+        }
+
+
+
+    </script>
+</body>
+
+</html>
