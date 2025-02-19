@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19-02-25</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            background-color: black;
+            color: aliceblue;
+            font-size: xx-large;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            margin: 10px;
+            background-color: aliceblue;
+            gap: 10px;
+
+        }
+
+        input[type=text],
+        input[type=submit], input[type=date]{
+            padding: 10px;
+            background-color: azure;
+            color: black;
+            border-radius: 6px;
+        }
+
+        p {
+            border: 2px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Factorial!!!</header>
+    <div class="box">
+        <input type="text" placeholder="Enter number " id="inp">
+        <input type="submit" value="submit" id="submit" onclick="fact()">
+        <p id="para" hidden></p>
+    </div>
+    <header>Arrays</header>
+    <div class="box">
+        <input type="text" placeholder="Enter anything" id="inp3">
+        <input type="submit" value="submit" id="submit3" onclick="maxarr()">
+        <p id="para3" hidden></p>
+    </div>
+   
+    <script>
+       
+       const fact = () => {
+        let num = parseInt(document.getElementById("inp").value);
+        let para = document.getElementById("para");
+
+        if (isNaN(num) || num < 0) {
+            para.innerText = "Please enter a valid non-negative number.";
+        } else {
+            let result = 1;
+            for (let i = 1; i <= num; i++) {
+                result *= i;
+            }
+            para.innerText = "Factorial of "+num+" is "+result;
+        }
+
+        para.hidden = false;
+    };
+    const maxarr=() =>{
+            let text3 = document.getElementById("inp3").value;
+            let para3 = document.getElementById("para3");
+            document.getElementById("para3");
+            let arr = text3.includes(",") ? text3.split(",") : text3.split(" ");
+            arr = arr.map(item => item.trim());
+            let maxVal = Math.max(...arr);
+            para3.innerHTML="Maximum value is : "+maxVal;
+              para3.hidden = false;
+
+    };
+
+
+    </script>
+</body>
+
+</html>
