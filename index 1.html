@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Assistant</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f0f2f5, #d6dbe0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .message-content {
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .chat-container {
+      width: 400px;
+      height: 500px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .message-logo {
+      height: 30px;
+      width: 30px;
+      top: 9px;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .ailogo {
+      height: 20px;
+      width: 20px;
+      margin-left: 5px;
+    }
+
+    .displyFlex {
+      display: flex;
+      align-items: center;
+    }
+
+    .chat-header {
+      background: #007bff;
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-history {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      height: 355px;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 12px 0px;
+      border-radius: 15px;
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      color: #808080;
+    }
+
+    .user-message {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      color: black;
+      align-self: flex-end;
+      background: #dbe2e6;
+      padding: 12px;
+      color: #808080;
+	   word-wrap: anywhere;
+    }
+
+    .assistant-message {
+      background-color: #dbe2e6;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      padding: 12px;
+	   word-wrap: anywhere;
+    }
+
+    .input-container {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+      background: white;
+    }
+
+    .loading-container {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .loading-spinner {
+      border: 4px solid #f3f3f3; /* Light gray */
+      border-top: 4px solid #007bff; /* Blue */
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 2s linear infinite;
+      margin-right: 10px;
+    }
+
+    .loading-text {
+      font-size: 14px;
+      color: #333;
+      font-weight:bold;
+    }
+
+    .input-box {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .send-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .send-btn:hover {
+      background: #0056b3;
+    }
+
+    .copy-btn {
+      margin-left: 10px;
+      padding-top: 5px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: right;
+    }
+
+    .copy-btn img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .copy-btn:hover {
+      opacity: 0.7;
+    }
+
+    .copy-btn:focus {
+      outline: none;
+    }
+
+    .loading-text {
+      font-size: 14px;
+      color: #333;
+      font-weight: normal;
+      padding-top: 5px;
+    }
+
+    #message-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      /* Additional styling */
+      background-color: #007bff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #message-icon img {
+      width: 70%;
+      height: 70%;
+    }
+
+    #chat-container {
+      position: fixed;
+      bottom: 95px; /* Adjust based on icon size and desired spacing */
+      right: 20px;
+      display: none; /* Hidden by default */
+      /* Additional styling */
+    }
+  </style>
+</head>
+<body>
+
+  
+  <!-- Header Section -->
+  <div id = "chat-container" class="chat-container" style="display: none; position: absolute;">
+    <div class="chat-header">Chat Assistant</div>
+    <div class="chat-history" id="chat-history">
+      <div class="message">
+        <img class="message-logo" src="https://storage.googleapis.com/writer-static/15405c74-d903-43ca-9c28-74d0a8ccf42c-g360-logo.svg" alt="Assistant Logo">
+        <div class="assistant-message">Hi, I'm the G360 Digital Assistant. What can I help you with today?</div>
+      </div>
+    </div>
+    <div class="input-container">
+      <input type="text" id="user-input" class="input-box" placeholder="Type your message...">
+      <button id="send-btn" class="send-btn">Send</button>
+    </div>
+  </div>
+
+  <img src="chat-icon.png" id="message-icon" class="send-btn" onclick="toggleChat()"></img>
+
+  <script>
+    function toggleChat() {
+      var chatContainer = document.getElementById('chat-container');
+      if (chatContainer.style.display === 'none') {
+        chatContainer.style.display = 'block';
+      } else {
+        chatContainer.style.display = 'none';
+      }
+    }
+  </script>
+
+  <script>
+    // Store messages
+    let messages = [];
+
+    // Get DOM elements
+    const chatHistory = document.getElementById('chat-history');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-btn');
+	// Function to get the current time formatted
+	function getCurrentTime() {
+		const now = new Date();
+		let hours = now.getHours();
+		let minutes = now.getMinutes();
+		let ampm = hours >= 12 ? 'PM' : 'AM';
+		hours = hours % 12;
+		hours = hours ? hours : 12; // Hour '0' should be '12'
+		minutes = minutes < 10 ? '0' + minutes : minutes;
+		const time = hours + ':' + minutes + ' ' + ampm;
+		return time;
+	  }
+    // Display messages
+    function displayMessages() {
+      // Clear the chat history
+      chatHistory.innerHTML = '';
+
+      // Add each message to the chat history
+      messages.forEach(msg => {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('displyFlex');
+    
+        const logo = document.createElement('img');
+        logo.classList.add('message-logo');
+        logo.src = msg.role === 'user' ? 'https://cdn-icons-png.flaticon.com/128/3177/3177440.png' : 'https://storage.googleapis.com/writer-static/15405c74-d903-43ca-9c28-74d0a8ccf42c-g360-logo.svg'; // Change to your desired assistant logo
+        logo.alt = msg.role === 'user' ? 'User Logo' : 'Assistant Logo';
+
+        const content = document.createElement('div');
+        content.classList.add('message-content');
+        content.classList.add('message', msg.role === 'user' ? 'user-message' : 'assistant-message');
+        content.textContent = msg.content;
+		// Create a time element and append it to the message content
+		const timeElement = document.createElement('div');
+		timeElement.classList.add('message-time');
+		timeElement.textContent = getCurrentTime(); // Add the current time
+		
+        // Create a copy button for assistant messages
+        if (msg.role === 'assistant') {
+		//if (msg.content.includes('Error:')) {
+			  const copyButton = document.createElement('div');
+			  copyButton.classList.add('copy-btn');
+			  
+			  // Use a copy icon (you can also use your own icon image)
+			  const copyIcon = document.createElement('img');
+			  copyIcon.src = 'https://cdn-icons-png.flaticon.com/128/1620/1620767.png'; // URL of the copy icon
+			  copyButton.appendChild(copyIcon);
+
+			  // Add event listener to copy the message to clipboard
+			  copyButton.addEventListener('click', () => {
+				navigator.clipboard.writeText(msg.content).then(() => {
+				  //alert('Text copied to clipboard!');
+				}).catch((error) => {
+				  console.error('Failed to copy text:', error);
+				});
+			  });
+			  
+			  // Append the copy button to the message content
+			  content.appendChild(copyButton);
+		  //}
+        }
+		// Append the time element after the message content
+		content.appendChild(timeElement);
+        // Add logo and message content to the message element
+        messageElement.appendChild(logo);
+        messageElement.appendChild(content);
+		
+        chatHistory.appendChild(messageElement);
+      });
+
+      // Scroll to the bottom of the chat history
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+
+    // Send message
+    function sendMessage() {
+      const message = userInput.value;
+
+      if (message.trim() === '') return;
+
+      // Disable the send button while waiting for the response
+      sendButton.disabled = true;
+      sendButton.classList.add('eleDisabled');
+
+      // Add user message
+      messages.push({ role: 'user', content: message });
+
+      // Display the message
+      displayMessages();
+
+      // Clear input field
+      userInput.value = '';
+
+      // Add loading spinner and text
+      const loadingElement = document.createElement('div');
+      loadingElement.classList.add('loading-container');
+      
+      const aiLogo = document.createElement('img');
+      aiLogo.classList.add('ailogo');
+      aiLogo.src = 'https://emoji.slack-edge.com/T04U8HYF8/eric/e0e8ef5a95045673.gif'; 
+
+      const loadingText = document.createElement('div');
+      loadingText.classList.add('loading-text');
+      loadingText.textContent = 'Analyzing your request';
+	  
+      loadingElement.appendChild(loadingText);
+      loadingElement.appendChild(aiLogo);
+     
+      chatHistory.appendChild(loadingElement);
+
+      // Call the backend API for the AI response
+      callApi(message, loadingElement);
+    }
+
+    // Call the API to get AI response
+    function callApi(query, loadingElement) {
+      const url = `http://127.0.0.1:5000/chat?query=${encodeURIComponent(query)}`;
+
+      fetch(url)
+        .then(response => response.json())  // Parse the response as JSON
+        .then(data => {
+          // Handle AI response (assuming the response contains 'response' property)
+          const aiResponse = data.response || 'AI response not available';
+
+          // Add AI response to the chat
+          messages.push({ role: 'assistant', content: aiResponse });
+
+          // Display updated messages
+          displayMessages();
+        })
+        .catch(error => {
+          console.error('Error calling API:', error);
+          // Handle error and show an error message in the chat
+          messages.push({ role: 'assistant', content: 'Error: Unable to get AI response.' });
+          displayMessages();
+        })
+        .finally(() => {
+          // Re-enable the send button after the response is received
+          sendButton.disabled = false;
+          sendButton.classList.remove('eleDisabled');
+          // Remove the loading spinner safely if it is still a child of chatHistory
+          if (chatHistory.contains(loadingElement)) {
+            chatHistory.removeChild(loadingElement);
+          }
+        });
+    }
+
+    // Add event listener for send button
+    sendButton.addEventListener('click', sendMessage);
+
+    // Add event listener for "Enter" key to send message
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>
