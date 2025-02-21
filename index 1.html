@@ -169,6 +169,7 @@
     .copy-btn img {
       width: 14px;
       height: 14px;
+
     }
 
     .copy-btn:hover {
@@ -214,6 +215,32 @@
       display: none; /* Hidden by default */
       /* Additional styling */
     }
+    .alignment {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-start; 
+}
+
+.copy-btn {
+  margin-left: -5px;
+}
+
+.message-time {
+  font-size: 12px;
+  color: gray;
+  margin-left: -1px; 
+}
+
+.align {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+
   </style>
 </head>
 <body>
@@ -270,63 +297,78 @@
     // Display messages
     function displayMessages() {
       // Clear the chat history
-      chatHistory.innerHTML = '';
+    chatHistory.innerHTML = '';
+  // Add each message to the chat history
+    messages.forEach(msg => {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('displyFlex');
 
-      // Add each message to the chat history
-      messages.forEach(msg => {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('displyFlex');
-    
-        const logo = document.createElement('img');
-        logo.classList.add('message-logo');
-        logo.src = msg.role === 'user' ? 'https://cdn-icons-png.flaticon.com/128/3177/3177440.png' : 'https://storage.googleapis.com/writer-static/15405c74-d903-43ca-9c28-74d0a8ccf42c-g360-logo.svg'; // Change to your desired assistant logo
+      const logo = document.createElement('img');
+      logo.classList.add('message-logo');
+      logo.src = msg.role === 'user'
+        ? 'https://cdn-icons-png.flaticon.com/128/3177/3177440.png'
+        : 'https://storage.googleapis.com/writer-static/15405c74-d903-43ca-9c28-74d0a8ccf42c-g360-logo.svg';
         logo.alt = msg.role === 'user' ? 'User Logo' : 'Assistant Logo';
+      const content = document.createElement('div');
+      content.classList.add('message-content', 'message', msg.role === 'user' ? 'user-message' : 'assistant-message');
 
-        const content = document.createElement('div');
-        content.classList.add('message-content');
-        content.classList.add('message', msg.role === 'user' ? 'user-message' : 'assistant-message');
-        content.textContent = msg.content;
-		// Create a time element and append it to the message content
-		const timeElement = document.createElement('div');
-		timeElement.classList.add('message-time');
-		timeElement.textContent = getCurrentTime(); // Add the current time
-		
-        // Create a copy button for assistant messages
-        if (msg.role === 'assistant') {
-		//if (msg.content.includes('Error:')) {
-			  const copyButton = document.createElement('div');
-			  copyButton.classList.add('copy-btn');
-			  
-			  // Use a copy icon (you can also use your own icon image)
-			  const copyIcon = document.createElement('img');
-			  copyIcon.src = 'https://cdn-icons-png.flaticon.com/128/1620/1620767.png'; // URL of the copy icon
-			  copyButton.appendChild(copyIcon);
+      // Message text
+      const messageText = document.createElement('div');
+      messageText.textContent = msg.content;
 
-			  // Add event listener to copy the message to clipboard
-			  copyButton.addEventListener('click', () => {
-				navigator.clipboard.writeText(msg.content).then(() => {
-				  //alert('Text copied to clipboard!');
-				}).catch((error) => {
-				  console.error('Failed to copy text:', error);
-				});
-			  });
-			  
-			  // Append the copy button to the message content
-			  content.appendChild(copyButton);
-		  //}
-        }
-		// Append the time element after the message content
-		content.appendChild(timeElement);
-        // Add logo and message content to the message element
-        messageElement.appendChild(logo);
-        messageElement.appendChild(content);
-		
-        chatHistory.appendChild(messageElement);
+     // Create a time element and append it to the message content
+      const timeElement = document.createElement('div');
+      timeElement.classList.add('message-time');
+      timeElement.textContent = getCurrentTime();
+
+      // Copy button (for assistant messages)
+      const copyButton = document.createElement('div');
+      copyButton.classList.add('copy-btn');
+      const copyIcon = document.createElement('img');
+      copyIcon.src = 'https://cdn-icons-png.flaticon.com/128/1620/1620767.png';
+      copyButton.appendChild(copyIcon);
+      copyButton.addEventListener('click', () => {
+        navigator.clipboard.writeText(msg.content);
       });
+ // Create a copy button for assistant messages
+      if (msg.role === 'assistant' && msg.content.includes('Error:')) {
+        const alignDiv = document.createElement('div');
+        alignDiv.classList.add('align');
 
-      // Scroll to the bottom of the chat history
-      chatHistory.scrollTop = chatHistory.scrollHeight;
-    }
+        const errorMsg = document.createElement('div');
+        errorMsg.classList.add('errormsg');
+        errorMsg.textContent = msg.content;
+
+        const alignmentDiv = document.createElement('div');
+        alignmentDiv.classList.add('alignment');
+         // Append the copy button to the message content
+        alignmentDiv.appendChild(copyButton);
+        // Append the time element after the message content
+        alignmentDiv.appendChild(timeElement);
+
+        alignDiv.appendChild(errorMsg);
+        alignDiv.appendChild(alignmentDiv);
+        content.appendChild(alignDiv);
+      } else {
+        content.appendChild(messageText);
+        const alignmentDiv = document.createElement('div');
+        alignmentDiv.classList.add('alignment');
+
+        if (msg.role === 'assistant') {
+          alignmentDiv.appendChild(copyButton);
+        }
+        alignmentDiv.appendChild(timeElement);
+        content.appendChild(alignmentDiv);
+      }
+ // Add logo and message content to the message element
+      messageElement.appendChild(logo);
+      messageElement.appendChild(content);
+      chatHistory.appendChild(messageElement);
+    });
+ // Scroll to the bottom of the chat history
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+  }
+
 
     // Send message
     function sendMessage() {
