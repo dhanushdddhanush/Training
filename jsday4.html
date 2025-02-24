@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21-02-2025</title>
+    <style>
+        button {
+            float: right;
+            padding: 10px;
+            background-color: black;
+            color: azure;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .events{
+            padding: 100px;
+            height: 150px;
+            width: 150px;
+            background-color: brown;
+            color: azure;
+        }
+        input[type=text],input[type=submit],input[type=password]{
+            padding: 10px;
+            background-color: azure;
+            color: black;
+            border-radius: 6px;
+        }
+        .events{
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body id="bodyy">
+   <div class="button"><button id="modeButton" onclick="changeclr()">Dark Mode</button></div> 
+   <h1>List Append</h1>
+    <div class="list"><input type="text" id="inp" placeholder="Enter text">
+    <input type="submit" onclick="txt()">
+    <ul id="uls"></ul></div> 
+    <div class="forms">
+        <h1>Form Validation</h1>
+    <form id="form" >
+        <input type="text" id="inp1" placeholder="Enter name"><br>
+        <div id="nameError" class="error"></div> <br>
+
+        <input type="password" id="pass" placeholder="Enter password"> <br>
+        <div id="passError" class="error"></div> <br>
+
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+    <div class="events">
+        mouses
+    </div>
+    <div class="clicks"> <input type="submit" value="Submit" onclick="handleClick()"></div>
+    <script>
+        const changeclr = () => {
+            const body = document.getElementById("bodyy");
+            const button = document.getElementById("modeButton");
+
+            if (body.style.backgroundColor === 'black') {
+                body.style.backgroundColor = 'white';
+                body.style.color = 'black';
+                button.textContent = 'Dark Mode';
+                button.style.backgroundColor = 'black';
+                button.style.color = 'azure';
+            } else {
+                body.style.backgroundColor = 'black';
+                body.style.color = 'white';
+                button.textContent = 'Light Mode';
+                button.style.backgroundColor = 'white';
+                button.style.color = 'black';
+            }
+        }
+
+        const txt = () => {
+            text = document.getElementById("inp").value;
+            document.getElementById("para");
+            console.log(text)
+            const li = document.createElement("li");
+            li.textContent = text;
+            document.getElementById("uls").appendChild(li);
+
+        }
+        const validate = () => {
+            const name = document.getElementById("inp1").value;
+            const pass = document.getElementById("pass").value;
+            const nameError = document.getElementById("nameError");
+            const passError = document.getElementById("passError");
+            let isValid = true;
+            if (name === "") {
+                nameError.textContent = "Name is required.";
+                isValid = false;
+            }
+            if (pass === "") {
+                passError.textContent = "Password is required.";
+                isValid = false;
+            } else if (pass.length < 6) {
+                passError.textContent = "Password must be at least 6 digits.";
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Form submitted successfully!");
+               console.log("usernme:"+name,"paassowrd is : "+pass);
+            }
+            return false;
+        };
+        document.getElementById("form").onsubmit = validate;
+
+        function handleClick() {
+    alert('Task4-popup!');
+}
+
+function handleMouseover() {
+    const events = document.querySelector('.events');
+    events.style.backgroundColor = 'black';
+}
+
+function handleMouseout() {
+    const events = document.querySelector('.events');
+    events.style.backgroundColor = 'red';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+     events = document.querySelector('.events');
+    events.addEventListener('mouseover', handleMouseover);
+    events.addEventListener('mouseout', handleMouseout);
+    
+});
+    </script>
+    </script>
+</body>
+
+</html>
