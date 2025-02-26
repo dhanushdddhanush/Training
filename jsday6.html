@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery-3.7.1.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box>img {
+            height: 200px;
+            width: 200px;
+            border-radius: 30px;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: black;
+            color: #f1f1f1;
+            text-align: center;
+            font-size: larger;
+            padding: 30px;
+        }
+
+        #fadeIn,
+        #fadeOut,
+        #slideUp,
+        #slideDown,
+        #animateBox,
+        #prev,
+        #next,
+        #tog1 {
+            padding: 30px;
+            color: black;
+            width: 50%;
+            cursor: pointer;
+        }
+
+        #fadeIn {
+            background: #ffeb00;
+        }
+
+        #fadeOut {
+            background: #ffffff;
+        }
+
+        #slideDown {
+            background: #ffeb00;
+        }
+
+        #slideUp {
+            background: #ffffff;
+        }
+
+
+        .but {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .image1,
+        .fadeImage {
+            width: 100%;
+            height: 100px;
+        }
+
+        #tog1 {
+            background: radial-gradient(circle, rgba(72, 241, 219, 1) 0%, rgba(255, 255, 255, 1) 35%);
+        }
+
+        .slideBox {
+            background: rgb(0, 255, 8);
+            background: linear-gradient(90deg, rgba(0, 255, 8, 1) 0%, rgba(255, 255, 255, 0.9726015406162465) 35%);
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        #animateBox {
+            background: rgb(11, 11, 11);
+            background: radial-gradient(circle, rgba(11, 11, 11, 1) 0%, rgba(163, 63, 172, 0.9726015406162465) 35%);
+            color: #f1f1f1;
+            font-size: x-large;
+            width: 100%;
+        }
+
+        .animatedBox {
+            width: 100px;
+            height: 100px;
+            background: rgb(0, 108, 255);
+            background: radial-gradient(circle, rgba(0, 108, 255, 1) 0%, rgba(200, 209, 216, 0.9726015406162465) 35%);
+            position: relative;
+
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#fadeIn").click(function () {
+                $(".fadeImage").fadeIn(1000);
+            });
+        }); $(document).ready(function () {
+            $("#fadeOut").click(function () {
+                $(".fadeImage").fadeOut(1000);
+            });
+        });
+
+        $(document).ready(function () {
+            $("#slideUp").click(function () {
+                $(".slideBox").slideUp(1000);
+            });
+        });
+        $(document).ready(function () {
+            $("#slideDown").click(function () {
+                $(".slideBox").slideDown(1000);
+            });
+        });
+
+        $(document).ready(function () {
+            $("#animateBox").click(function () {
+                $(".animatedBox").animate({
+                    left: '200px',
+                    opacity: '0.5',
+                    width: '150px',
+                    height: '150px'
+                }, 1000);
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <header id="head">Jquery</header>
+
+    <div class="but">
+        <p id="fadeIn">Fade In</p>
+        <p id="fadeOut">Fade Out</p>
+    </div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMPBGGLEZVWbYqerLa2esKrSc8IOlgPao-lA&s" alt=""
+        class="fadeImage" style="display: none;">
+    <div class="but">
+        <p id="slideUp">Slide Up</p>
+        <p id="slideDown">Slide Down</p>
+    </div>
+    <div class="slideBox">
+        This is a sliding box.
+    </div>
+    <div class="but">
+        <p id="animateBox">Click To Animate Box</p>
+    </div>
+    <div class="animatedBox"></div>
+
+</body>
+
+</html>
