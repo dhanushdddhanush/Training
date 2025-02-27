@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Day-3 Task</title>
+      <script src="jquery-3.7.1.js" ></script>
+        <style>
+           
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+               
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+            }
+
+          
+            .header {
+                background-color: black;
+                color: whitesmoke;
+                text-align: center;
+                padding: 20px;
+                position: sticky;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+
+           
+            
+            .section {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .section h2 {
+                margin-bottom: 15px;
+                font-size: 1.5em;
+                color: #333;
+            }
+
+            
+            .list {
+                list-style-type: none;
+                margin: 10px 0;
+            }
+
+            .list li {
+                padding: 10px;
+                margin: 5px 0;
+                background-color: #f4f4f4;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .list li:hover {
+                background-color: #ddd;
+            }
+
+           
+            .button {
+                padding: 10px 15px;
+                margin: 10px 5px;
+                border: none;
+                border-radius: 5px;
+                background-color: #000000;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .button:hover {
+                background-color: #0056b3;
+            }
+ .table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            .table th, .table td {
+                padding: 10px;
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .highlight {
+                background-color: #ffeb3b !important;
+            }
+        </style>
+         <script>
+            $(document).ready(function() {
+               
+                $('#modify').click(function() {
+                    $('#myList li').each(function() {
+                        $(this).text($(this).text() + ' - Modified');
+                    });
+                });
+
+                
+                $('#clone').click(function() {
+                    const clonedParagraph = $('#original').clone();
+                    $('#container').append(clonedParagraph);
+                });
+
+               
+                $('#findParent').click(function() {
+                    const parent = $('#child').parent();
+                    alert('Parent ID: ' + parent.attr('id'));
+                });
+
+                $('#findChildren').click(function() {
+                    const children = $('#parentDiv').children();
+                    children.each(function() {
+                        alert('Child Text: ' + $(this).text());
+                    });
+                });
+
+               
+                let itemCount = 1;
+                $('#addItem').click(function() {
+                    itemCount++;
+                    $('#dynamicList').append(`<li>Item ${itemCount}</li>`);
+                });
+
+                $('#removeItem').click(function() {
+                    $('#dynamicList li').last().remove();
+                    if (itemCount > 1) itemCount--;
+                });
+
+               
+                $('#highlight').click(function() {
+                    $('#myTable tr:even').addClass('highlight');
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <header class="header">
+            Jquery
+        </header>
+
+      
+        <div class="section">
+            <h2>Task 1: Modify List Items</h2>
+            <ul class="list" id="myList">
+                <li>Dhanush</li>
+                <li>Chandu</li>
+                <li>Jagadeesh</li>
+            </ul>
+            <button id="modify" class="button">Modify Item</button>
+        </div>
+
+      
+        <div class="section">
+            <h2>Task 2: Clone and Append</h2>
+            <div id="container">
+                <p id="original">Original Paragraph</p>
+            </div>
+            <button id="clone" class="button">Clone & Append</button>
+        </div>
+
+       
+        <div class="section">
+            <h2>Task 3: Find Parent and Children</h2>
+            <div id="parentDiv">
+                <p id="child">Child Paragraph</p>
+            </div>
+            <button id="findParent" class="button">Find Parent</button>
+            <button id="findChildren" class="button">Find Children</button>
+        </div>
+
+        
+        <div class="section">
+            <h2>Task 4: Add and Remove List Items</h2>
+            <ul class="list" id="dynamicList">
+                <li>Item</li>
+            </ul>
+            <button id="addItem" class="button">Add Item</button>
+            <button id="removeItem" class="button">Remove Item</button>
+        </div>
+
+       
+        <div class="section">
+            <h2>Task 5: Highlight Table Rows</h2>
+            <table class="table" id="myTable">
+                <tr><th>Names</th></tr>
+                <tr><td>Dhanush</td></tr>
+                <tr><td>Chandu</td></tr>
+                <tr><td>Jagadeesh</td></tr>
+                <tr><td>Dhanush</td></tr>
+                <tr><td>Chandu</td></tr>
+                <tr><td>Jagadeesh</td></tr>
+                
+            </table>
+            <button id="highlight" class="button">Highlight Rows</button>
+        </div>
+
+           </body>
+</html>
