@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
+    <script src="jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#getdata").click(function () {
+                $.get("https://jsonplaceholder.typicode.com/users", function (data) {
+
+                    data.forEach(post => {
+                        let postElement = $("<div>").addClass("post-box");
+                        let name = $("<h3>").text(post.name);
+                        let username = $("<p>").text(post.username);
+                        let email = $("<p>").text(post.email);
+                        postElement.append(name, username, email);
+                        $(".viewdata").append(postElement);
+                    });
+
+                });
+            });
+        });
+    </script>
+    <style>
+        .viewdata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .post-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .post-box h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .post-box p {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="submit" value="Fetch the Data" id="getdata">
+    <div class="viewdata"> </div>
+</body>
+
+</html>
